@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard • Apple Launch Analytics</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="brand"> Launch Analytics</div>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/healthz">Health</a></li>
+        </ul>
+      </nav>
+      <section class="hero">
+        <h1>Sample Dashboard</h1>
+        <p>Interactive bar chart rendered with Plotly.</p>
+      </section>
+    </header>
+
+    <main class="container section">
+      <div id="bar-chart" style="height:420px;"></div>
+    </main>
+
+    <footer class="site-footer">
+      <small>© 2025 Apple Launch Analytics (Local)</small>
+    </footer>
+
+    <script>
+      const labels = {{ labels|tojson }};
+      const values = {{ values|tojson }};
+
+      const data = [{
+        x: labels,
+        y: values,
+        type: 'bar',
+        marker: { color: '#4F46E5' }
+      }];
+      const layout = {
+        margin: { t: 24, r: 16, b: 56, l: 56 },
+        yaxis: { title: 'Revenue (units)' },
+        xaxis: { title: 'Category' }
+      };
+      Plotly.newPlot('bar-chart', data, layout, { displayModeBar: false });
+    </script>
+  </body>
+</html>

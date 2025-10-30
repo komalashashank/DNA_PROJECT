@@ -1,0 +1,23 @@
+data:
+  external:
+    social: data/external/social_posts.csv
+    reviews: data/external/reviews.csv
+    web_analytics: data/external/web_analytics.csv
+    transactions: data/external/transactions.csv
+    campaigns: data/external/campaigns.csv
+  interim_dir: data/interim
+  processed_dir: data/processed
+
+sentiment:
+  method: vader  # options: vader, transformer
+  transformer_model: cardiffnlp/twitter-roberta-base-sentiment
+
+features:
+  cohort_anchor: first_purchase_month
+  funnel_lookback_days: 30
+
+viz:
+  date_col: timestamp
+  product_launch_dates:
+    - 2024-09-12
+    - 2025-09-10
